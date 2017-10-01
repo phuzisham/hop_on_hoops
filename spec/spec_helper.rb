@@ -9,3 +9,17 @@ require('capybara/rspec')
 Capybara.app = Sinatra::Application
 set(:show_exceptions, false)
 require('./app')
+
+RSpec.configure do |config|
+  config.after(:each) do
+    Game.all().each() do |x|
+      x.destroy
+    end
+    Player.all().each() do |x|
+      x.destroy
+    end
+    Court.all().each() do |x|
+      x.destroy
+    end
+  end
+end
