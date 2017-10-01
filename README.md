@@ -14,7 +14,7 @@ _An application to match pickup basketball games to players around Portland._
 
 ## Specs
 
-![alt text](... "Database tables")
+![alt text](https://github.com/phuzisham/hop_on_hoops/blob/master/public/tables_screen_shot.png "Database tables")
 
 ## Technologies Used
 
