@@ -1,0 +1,8 @@
+
+development:
+  adapter: postgresql
+  database: hop_on_hoops_development
+
+test:
+  adapter: postgresql
+  database: hop_on_hoops_test
