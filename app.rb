@@ -33,3 +33,21 @@ get('/login') do
     erb(:register)
   end
 end
+
+# /////Courts////////
+get '/courts' do
+  @courts = Court.all()
+
+  erb(:courts)
+end
+
+post '/courts' do
+  location = params['location']
+  title = params['title']
+  hoop_count = params['hoop_count']
+  rating = params['rating']
+  description = params['description']
+  @court = Court.create({location: location, hoop_count: hoop_count, rating: rating, description: description, title: title})
+  redirect(:courts)
+end
+# ///////////
