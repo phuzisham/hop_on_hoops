@@ -2,13 +2,65 @@
 <html>
   <head>
     <title>Hop On Hoops</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+    <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"> -->
     <link rel='stylesheet' href='/css/styles.css' type='text/css'>
+    <script src="/js/jquery-3.2.1.js"></script>
+    <script src="/js/scripts.js"></script>
+    <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <style>@import url('https://fonts.googleapis.com/css?family=Faster+One|Gruppo');</style>
   </head>
   <body>
-    <nav class="navbar navbar-light bg-faded sticky-top" style="background-color: #FFF">
-          <a class="navbar-brand" href="/">Deadstock</a>
-        </nav><br><br>
+    <nav class="navbar navbar-light bg-faded sticky-top navbar-toggleable-md" style="background-color: #DDD">
+      <a class="navbar-brand" href="/">
+        <img id="logo" src="/img/logo.png" class="d-inline-block align-top" alt="Hop on Hoops logo">
+        Hop on Hoops
+      </a>
+
+      <!-- <div class="collapse navbar-collapse" id="navbarNav"> -->
+        <ul class="navbar-nav">
+          <!-- <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#AA">Games</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#BB">Forum</a>
+          </li>
+        </ul>
+
+        <div class="navbar-collapse justify-content-end navbar-toggleable-md" id="navbarCollapse">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#">User's Name</a>
+            </li>
+          </ul>
+        </div>
+      <!-- </div> -->
+
+      <!-- <div class="navbar-collapse collapse">
+  	    <ul class="nav navbar-nav">
+  	      <li><a href="/secure/place">Secret</a></li>
+  	    </ul>
+  	    <ul class="nav navbar-nav navbar-right">
+  	        <li class="dropdown">
+  	          <a href="#" class="dropdown-toggle" data-toggle="dropdown"> username <b class="caret"></b></a>
+  	        <ul class="dropdown-menu">
+  	            <li><a href="/login/form">Login</a></li>
+  	            <li class="divider"></li>
+  	            <li><a href="/logout">Logout</a></li>
+  	        </ul>
+  	      </li>
+  	    </ul>
+  	  </div> -->
+
+    </nav>
+
     <div class='container'>
       <%= yield %>
     </div>
