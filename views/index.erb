@@ -2,7 +2,7 @@
   <div class="col-sm-4">
     <div class="card">
       <% if @user != nil %>
-      <h4>You are now logged in as: <%= @user.user_name %></h4>
+      <h4>Welcome back: <%= @user.user_name %></h4>
 
       <% else %>
       <h4>Login:</h4>
@@ -22,4 +22,53 @@
       <% end %>
     </div>
   </div>
+  <div class="col-sm-8">
+    <div class="card">
+      <h1>Map Will Go Here</h1>
+    </div>
+  </div>
 </div>
+<br>
+<% if @user != nil %>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <% if @games != nil %>
+          <h4>Available Games:</h4>
+          <ul>
+            <% @games.each do |game| %>
+              <% court = Court.find(game.court_id) %>
+              <li><%= court.title %> <%= game.time %></li>
+            <% end %>
+          </ul>
+        <% else %>
+          <h4>No Available Games Yet</h4>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <h4>Create Game:</h4>
+        <form class="" action="/create_game" method="post">
+          <div class="form-group">
+            <label for="time">Court:</label>
+            <select class="form-control" name="court">
+              <% if @courts != nil %>
+                <% @courts.each do |court| %>
+                  <option value="<%= court.id %>"><%= court.title %></option>
+                <% end %>
+              <% else %>
+                <option>There Are No Courts Yet</option>
+              <% end %>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="time">Day and Time:</label>
+            <input class="form-control" type="datetime-local" name="time">
+          </div>
+          <button class="btn btn-success" type="submit" name="button">Create Game</button>
+        </form>
+      </div>
+    </div>
+  </div>
+<% end %>

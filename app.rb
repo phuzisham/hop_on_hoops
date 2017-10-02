@@ -4,6 +4,8 @@ Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 require('pry')
 
 get('/') do
+  @games = Game.all()
+  @courts = Court.all()
   erb(:index)
 end
 
@@ -34,10 +36,8 @@ get('/login') do
   end
 end
 
-# /////Courts////////
 get '/courts' do
   @courts = Court.all()
-
   erb(:courts)
 end
 
@@ -50,4 +50,3 @@ post '/courts' do
   @court = Court.create({location: location, hoop_count: hoop_count, rating: rating, description: description, title: title})
   redirect(:courts)
 end
-# ///////////

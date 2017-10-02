@@ -15,7 +15,8 @@ describe(Player) do
   end
 
   it('will capitalize name') do
-    player = Player.create({name: 'larry bird'})
+    player = Player.new({name: 'larry bird', user_name: 'LarryB1rd', user_password: '1234'})
+    player.save()
     expect(player.name).to(eq('Larry Bird'))
   end
 
