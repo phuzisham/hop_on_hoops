@@ -4,6 +4,8 @@ Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 require('pry')
 
 get('/') do
+  @games = Game.all()
+  @courts = Court.all()
   erb(:index)
 end
 
@@ -33,3 +35,11 @@ get('/login') do
     erb(:register)
   end
 end
+
+# create game
+post('create_game') do
+  court = params('court')
+  time = params('time')
+  Game.create(court_id: court.id, time: time)
+end
+# create game
