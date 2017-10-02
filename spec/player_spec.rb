@@ -23,4 +23,11 @@ describe(Player) do
     player = Player.new({name: ''})
     expect(player.save).to(eq(false))
   end
+
+  it('will allow a user to create a secure password') do
+    player = Player.new({:name => 'Terrence', :user_name => 'LarryB1rd', :user_password => 'imTheBest'})
+    player.save
+    test_hash = BCrypt::Password.new(player.user_password)
+    expect(player.user_password).to(eq(test_hash))
+  end
 end
