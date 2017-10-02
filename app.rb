@@ -7,6 +7,17 @@ get('/') do
   erb(:index)
 end
 
+get('/home/:id') do
+  @user = Player.find(params['id'])
+  if @user != nil
+    @courts = Court.all
+    @games = Game.all
+    erb(:home)
+  else
+    erb(:index)
+  end
+end
+
 get('/sign_up') do
   erb(:register)
 end
@@ -20,12 +31,14 @@ get('/register') do
 end
 
 get('/login') do
+  @games = Game.all
+  @courts = Court.all
   @user = Player.where(:user_name => params["user_name"]).first
   if @user != nil
     @user_name = params["user_name"]
     password_hash = BCrypt::Password.new(@user.user_password)
     if password_hash == params["user_password"]
-      erb(:index)
+      redirect("/home/#{@user.id}")
     else
       erb(:login_error)
     end
@@ -34,10 +47,8 @@ get('/login') do
   end
 end
 
-# /////Courts////////
 get '/courts' do
   @courts = Court.all()
-
   erb(:courts)
 end
 
@@ -50,4 +61,10 @@ post '/courts' do
   @court = Court.create({location: location, hoop_count: hoop_count, rating: rating, description: description, title: title})
   redirect(:courts)
 end
-# ///////////
+
+post('/create_game') do
+  court = params['court']
+  time = params['time']
+  Game.create(court_id: court, time: time)
+  redirect('/')
+end
