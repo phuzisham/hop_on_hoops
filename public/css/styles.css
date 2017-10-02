@@ -3,7 +3,7 @@
   /*text-align: center;*/
 }
 
-#header {
+.navbar-brand {
   font-size: 4vw;
   font-family: 'Faster One', cursive !important;
 }
