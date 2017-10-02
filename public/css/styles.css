@@ -1,8 +1,11 @@
+#footer {
+  font-family: 'Gruppo', cursive !important;
+  /*text-align: center;*/
+}
 
-.navbar-brand {
+#header {
   font-size: 4vw;
   font-family: 'Faster One', cursive !important;
-  /*font-family: 'Gruppo', cursive !important;*/
 }
 
 #logo {
