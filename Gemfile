@@ -6,6 +6,7 @@ gem("rake")
 gem("pg")
 gem("sinatra")
 gem("pry")
+gem('bcrypt')
 
 group(:test) do
   gem("shoulda-matchers", '~> 2.0')
