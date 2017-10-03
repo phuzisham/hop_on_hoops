@@ -16,7 +16,6 @@
             <% court = Court.find(game.court_id) %>
             <li><a href="/game/<%= game.id %>"><%=game.game_name%></a><%= court.title %>, <%= game.date %>, <%= game.time %></li>
           <% end %>
-
         </ul>
       <% else %>
         <h4>No Available Games Yet</h4>
@@ -55,7 +54,6 @@
       </form>
       <br>
       <small><a href="/sign_up">Not registered? Sign up here.</a></small>
-      <% end %>
     </div>
   </div>
   <div class="col-sm-3">

@@ -9,7 +9,6 @@ get('/') do
   erb(:index)
 end
 
-
 get('/sign_up') do
   erb(:register)
 end
@@ -55,7 +54,6 @@ post('/create_game') do
   time = params['time']
   date = params['date']
   game_name = params['game_name']
-  binding.pry
   Game.create(court_id: court, time: time, date: date, game_name: game_name)
   redirect('/')
 end
