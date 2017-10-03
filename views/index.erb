@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-sm-4">
+  <div class="col-sm-3">
     <div class="card">
       <% if @user != nil %>
       <h4>Welcome back: <%= @user.user_name %></h4>
@@ -22,9 +22,21 @@
       <% end %>
     </div>
   </div>
-  <div class="col-sm-8">
+  <div class="col-sm-3">
     <div class="card">
-      <h1>Map Will Go Here</h1>
+      <h4>Local Courts:</h4>
+      <% if @courts != nil %>
+        <% @courts.each do |court| %>
+          <a href="/court/<%= court.id %>"><%= court.title %></a>
+        <% end %>
+      <% else %>
+        <option>There Are No Courts Yet</option>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div id="map"></div>
     </div>
   </div>
 </div>

@@ -11,3 +11,8 @@
 #logo {
   width: 5.7vw;
 }
+
+#map{
+  height: 400px;
+  width: 100%;
+}
