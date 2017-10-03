@@ -6,8 +6,12 @@ class Player < ActiveRecord::Base
   validates(:user_password, {:presence => true, :length => {:maximum => 30}})
   validates(:user_name, uniqueness: { case_sensitive: false })
   before_save(:upcase_name)
-  before_save(:password_hash)
+  before_save(:hash_pass)
   include BCrypt
+
+  def auth_pass(password, hash)
+    BCrypt::Password.new(hash) == password
+  end
 
   private
 
@@ -19,7 +23,7 @@ class Player < ActiveRecord::Base
     self.name = array.join(' ')
   end
 
-  def password_hash
-    self.user_password = BCrypt::Password.create(self.user_password)
+  def hash_pass()
+    self.user_password=(BCrypt::Password.create(user_password).to_s)
   end
 end

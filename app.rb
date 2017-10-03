@@ -1,7 +1,19 @@
 require("bundler/setup")
 Bundler.require(:default)
+enable :sessions
+
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 require('pry')
+
+helpers do
+  def current_user
+    if session[:user_id]
+      Player.find { |u| u.id == session[:user_id] }
+    else
+      nil
+    end
+  end
+end
 
 get('/') do
   @games = Game.all
@@ -21,11 +33,16 @@ get('/register') do
   redirect('/')
 end
 
-get('/login') do
-  @games = Game.all
-  @courts = Court.all
-  @user = Player.where(:user_name => params["user_name"]).first
-  erb(:register)
+post('/login') do
+  user = Player.find { |u| u.user_name == params["user_name"] }
+  if user && user.auth_pass(params["user_password"], user.user_password)
+    session.clear
+    session[:user_id] = user.id
+    redirect("/")
+  else
+    @error = 'Username or password was incorrect'
+    erb :error
+  end
 end
 
 get '/game/:id' do

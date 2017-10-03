@@ -1,7 +1,45 @@
 <div class="row">
   <div class="col-sm-3">
     <div class="card">
-      <h1>Map Will Go Here</h1>
+      <% if current_user %>
+        <h4>Welcome back: <%= current_user.user_name %></h4>
+      <% else %>
+        <h4>Login:</h4>
+        <form class="" action="/login" method="post">
+          <div class="form-group">
+            <label for="user_name">User Name:</label>
+            <input class="form-control" type="text" name="user_name">
+          </div>
+          <div class="form-group">
+            <label for="user_password">Password:</label>
+            <input class="form-control" type="password" name="user_password">
+          </div>
+          <button class="btn btn-success" type="submit" name="button">Log In</button>
+        </form>
+        <br>
+        <small><a href="/sign_up">Not registered? Sign up here.</a></small>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="card">
+      <h4>Local Courts:</h4>
+      <% if @courts != nil %>
+        <% @courts.each do |court| %>
+          <a href="/court/<%= court.id %>"><%= court.title %></a>
+        <% end %>
+      <% else %>
+        <option>There Are No Courts Yet</option>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div id="floating-panel">
+      <input id="address" type="textbox" value="Portland, Or">
+      <input id="submit" type="button" value="Create Court Location">
+    </div>
+    <div class="card">
+      <div id="map"></div>
     </div>
   </div>
 </div>
@@ -56,25 +94,4 @@
       <small><a href="/sign_up">Not registered? Sign up here.</a></small>
     </div>
   </div>
-  <div class="col-sm-3">
-    <div class="card">
-      <h4>Local Courts:</h4>
-      <% if @courts != nil %>
-        <% @courts.each do |court| %>
-          <a href="/court/<%= court.id %>"><%= court.title %></a>
-        <% end %>
-      <% else %>
-        <option>There Are No Courts Yet</option>
-      <% end %>
-    </div>
-  </div>
-  <div class="col-sm-6">
-    <div id="floating-panel">
-      <input id="address" type="textbox" value="Portland, Or">
-      <input id="submit" type="button" value="Create Court Location">
-    </div>
-      <div class="card">
-        <div id="map"></div>
-      </div>
-    </div>
 </div>
