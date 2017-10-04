@@ -44,6 +44,24 @@ li {
   background-color: rgba(76, 86, 96, 0.7);
 }
 
+#aboutCard {
+  border-style: inset;
+  color: #FFF;
+  border-radius: 23px;
+  padding: 50px;
+  vertical-align: middle;
+  margin-top: 50px;
+  margin-bottom: 90px;
+  margin-left: 50px;
+  margin-right: 50px;
+  background-color: rgba(76, 86, 96, 0.7);
+}
+
+#aboutCarousel h1 {
+  text-align: center !important;
+  padding: 50px;
+}
+
 #footer {
   font-family: 'Gruppo', cursive !important;
   /*text-align: center;*/
