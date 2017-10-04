@@ -41,8 +41,8 @@ post('/login') do
     session[:user_id] = user.id
     redirect("/")
   else
-    @error = 'Username or password was incorrect'
-    erb :error
+    @error = 'Username or password was incorrect.'
+    erb(:error)
   end
 end
 
@@ -60,15 +60,21 @@ get '/game/:id' do
 end
 
 post('/create_game') do
-  court = Court.find(params['court'])
-  time = params['time']
-  date = params['date']
-  datetime = date + " " + time
-  game_name = params['game_name']
-  game = Game.create(time: datetime, game_name: game_name)
-  game.courts.push(court)
-  current_user.games.push(game)
-  redirect('/')
+  if current_user
+    court = Court.find(params['court'])
+    time = params['time']
+    date = params['date']
+    datetime = date + " " + time
+    game_name = params['game_name']
+    game = Game.create(time: datetime, game_name: game_name)
+    game.courts.push(court)
+    current_user.games.push(game)
+    binding.pry
+    redirect('/')
+  else
+    @error = 'You must be logged in to add games.'
+    erb(:error)
+  end
 end
 
 get('/join_game/:id') do
@@ -105,13 +111,18 @@ get '/courts' do
 end
 
 post '/courts' do
-  location = params['location']
-  title = params['title']
-  hoop_count = params['hoop_count']
-  rating = params['rating']
-  description = params['description']
-  @court = Court.create({location: location, hoop_count: hoop_count, rating: rating, description: description, title: title})
-  redirect(:courts)
+  if current_user
+    location = params['location']
+    title = params['title']
+    hoop_count = params['hoop_count']
+    rating = params['rating']
+    description = params['description']
+    @court = Court.create({location: location, hoop_count: hoop_count, rating: rating, description: description, title: title})
+    redirect(:courts)
+  else
+    @error = 'You must be logged in to add courts.'
+    erb(:error)
+  end
 end
 # //////
 

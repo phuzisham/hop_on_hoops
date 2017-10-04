@@ -2,6 +2,48 @@
   text-decoration: none;
 }*/
 
+body {
+  background: url("/img/fence.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+a {
+  color: #b6d3ed;
+}
+
+li {
+  list-style-type: none;
+}
+
+.card {
+  border-radius: 20px;
+  border-style: none;
+
+  background: none;
+}
+
+#navbar-footer {
+  background-color: #6f7984;
+}
+
+#navbar-header {
+  background-color: #6f7984;
+}
+
+#mainCard {
+  border-style: inset;
+  color: #FFF;
+  border-radius: 23px;
+  padding: 23px;
+  vertical-align: middle;
+  margin-top: 50px;
+  margin-bottom: 90px;
+  background-color: rgba(76, 86, 96, 0.7);
+}
+
 #footer {
   font-family: 'Gruppo', cursive !important;
   /*text-align: center;*/
@@ -17,6 +59,7 @@
 }
 /*map stuff*/
 #map{
+  border-radius: 23px;
   height: 400px;
   width: 100%;
 }
