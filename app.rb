@@ -129,7 +129,6 @@ end
 # ///view and update a court///
 get '/courts/:id' do
   @court = Court.find(params[:id])
-  # binding.pry
   erb(:court_page)
 end
 
