@@ -59,13 +59,15 @@ get '/game/:id' do
 end
 
 post('/create_game') do
-  court = params['court']
+  court = Court.find(params['court'])
   time = params['time']
   date = params['date']
   datetime = date + " " + time
   game_name = params['game_name']
   game = Game.create(time: datetime, game_name: game_name)
+  game.courts.push(court)
   current_user.games.push(game)
+  binding.pry
   redirect('/')
 end
 

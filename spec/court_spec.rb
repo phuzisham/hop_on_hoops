@@ -1,6 +1,6 @@
 require('spec_helper')
 
 describe(Court) do
-  it { should belong_to(:player) }
-  it { should belong_to(:game) }
+  it { should have_many(:players) }
+  it { should have_many(:games) }
 end

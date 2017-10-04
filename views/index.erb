@@ -52,7 +52,6 @@
         <h4>Available Games:</h4>
         <ul>
           <% @games.each do |game| %>
-          <% binding.pry %>
             <li><a href="/game/<%= game.id %>"><%=game.game_name%>: </a><%=  game.courts.first.title %>, <%= game.time.strftime("%B %u, %Y") %><%= game.time.strftime(" at %I:%M%p") %></li>
           <% end %>
         </ul>

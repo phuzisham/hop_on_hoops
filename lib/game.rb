@@ -1,6 +1,7 @@
 class Game < ActiveRecord::Base
-  has_many :courts
-  has_many :players, through: :courts
+  has_many :matches
+  has_many :courts, through: :matches
+  has_many :players, through: :matches
   validates(:game_name, {:presence => true, :length => {:maximum => 100}})
   validates(:game_name, uniqueness: { case_sensitive: false })
   before_save(:upcase_title)

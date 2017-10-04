@@ -2,7 +2,7 @@
   <h1><%= @game.game_name %></h1>
 </div>
 
-<h3><%= @game.court.title %></h3>
+<h3><%= @game.courts.first.title %></h3>
 <h3><%= @game.time.strftime("%B %u, %Y") %><%= @game.time.strftime(" at %I:%M%p") %></h3>
 
 
