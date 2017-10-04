@@ -3,6 +3,7 @@
     <div class="card">
       <% if current_user %>
         <h4>Welcome back: <%= current_user.user_name %></h4>
+        <a href="/signout"><h6>Sign Out</h6></a>
       <% else %>
         <h4>Login:</h4>
         <form class="" action="/login" method="post">
@@ -51,8 +52,7 @@
         <h4>Available Games:</h4>
         <ul>
           <% @games.each do |game| %>
-            <% court = Court.find(game.court_id) %>
-            <li><a href="/game/<%= game.id %>"><%=game.game_name%></a><%= court.title %>, <%= game.date %>, <%= game.time %></li>
+            <li><a href="/game/<%= game.id %>"><%=game.game_name%>: </a><%=  game.courts.first.title %>, <%= game.time.strftime("%B %u, %Y") %><%= game.time.strftime(" at %I:%M%p") %></li>
           <% end %>
         </ul>
       <% else %>

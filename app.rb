@@ -21,6 +21,7 @@ get('/') do
   erb(:index)
 end
 
+# ///login and logout///
 get('/sign_up') do
   erb(:register)
 end
@@ -45,12 +46,39 @@ post('/login') do
   end
 end
 
+get('/signout') do
+  session.clear
+  erb(:index)
+end
+# //////
+
+# ///view and update games///
 get '/game/:id' do
   @game = Game.find(params[:id])
-  @court = Court.find(params[:id])
   erb(:game)
 end
 
+post('/create_game') do
+  court = Court.find(params['court'])
+  time = params['time']
+  date = params['date']
+  datetime = date + " " + time
+  game_name = params['game_name']
+  game = Game.create(time: datetime, game_name: game_name)
+  game.courts.push(court)
+  current_user.games.push(game)
+  binding.pry
+  redirect('/')
+end
+
+get('/join_game/:id') do
+  game = Game.find(params['id'])
+  current_user.games.push(game)
+  redirect('/')
+end
+# //////
+
+# ///create and update courts///
 get '/courts' do
   @courts = Court.all()
   erb(:courts)
@@ -65,12 +93,4 @@ post '/courts' do
   @court = Court.create({location: location, hoop_count: hoop_count, rating: rating, description: description, title: title})
   redirect(:courts)
 end
-
-post('/create_game') do
-  court = params['court']
-  time = params['time']
-  date = params['date']
-  game_name = params['game_name']
-  Game.create(court_id: court, time: time, date: date, game_name: game_name)
-  redirect('/')
-end
+# //////

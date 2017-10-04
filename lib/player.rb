@@ -1,6 +1,7 @@
 class Player < ActiveRecord::Base
-  has_many :games
-  has_many :courts, through: :games
+  has_many :matches
+  has_many :courts, through: :matches
+  has_many :games, through: :matches
   validates(:name, {:presence => true, :length => {:maximum => 50}})
   validates(:user_name, {:presence => true, :length => {:maximum => 30}})
   validates(:user_password, {:presence => true, :length => {:maximum => 30}})

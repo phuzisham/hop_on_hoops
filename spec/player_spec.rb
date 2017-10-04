@@ -1,6 +1,7 @@
 require('spec_helper')
 
 describe(Player) do
+  it { should have_many(:games) }
   it { should have_many(:courts) }
 
   it("ensures the length of title is at most 100 characters") do
