@@ -11,31 +11,49 @@ body {
 }
 
 a {
-  color: #b6d3ed;
+  color: #04e5ef;
+}
+
+.btn {
+  background-color: #5fc9ce;
+  border-style: none;
+  color: #fff;
 }
 
 li {
   list-style-type: none;
 }
 
+#error {
+  text-align: center;
+}
+
 .card {
   border-radius: 20px;
   border-style: none;
-
   background: none;
 }
 
 #navbar-footer {
-  background-color: #6f7984;
+  background-color: #353334;
+  color: #e8f2f2;
 }
 
 #navbar-header {
-  background-color: #6f7984;
+  background-color: #5fc9ce;
 }
 
-#mainCard {
+#navbar-header h1 {
+  color: #000;
+}
+
+#navbar-header a {
+  color: #353334;
+}
+
+.mainCard {
   border-style: inset;
-  color: #FFF;
+  color: #fff;
   border-radius: 23px;
   padding: 23px;
   vertical-align: middle;
@@ -60,6 +78,10 @@ li {
 #aboutCarousel h1 {
   text-align: center !important;
   padding: 50px;
+}
+
+.mainCard h4 {
+  color: #e8f2f2;
 }
 
 #footer {

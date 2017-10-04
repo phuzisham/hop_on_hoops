@@ -97,7 +97,7 @@ get('/join_game/:id') do
       erb(:error)
     end
   else
-    @error = 'You must be signed in to join games'
+    @error = 'You must be signed in to join games.'
     erb(:error)
   end
 end
