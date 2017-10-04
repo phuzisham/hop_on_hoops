@@ -1,39 +1,37 @@
-<div class="card">
-  insert map here
+<div class="jumbotron">
+  <h1><%= @court.title %></h1>
+  <p><%= @court.description %></p>
+  <small><p>Address: <%= @court.location %></p></small>
+  <small><p>Baskets: <%= @court.hoop_count %></p></small>
+  <small><p>Rating: <%= @court.hoop_count %></p></small>
 </div>
 <div class="row">
   <div class="col col-md-8">
     <div class="card">
-      <h3>Current Courts</h3>
-      <% if @courts != nil%>
-        <table>
-          <tr>
-            <th>Court</th>
-            <th>Location</th>
-            <th>Rating</th>
-          </tr>
-        <% @courts.each  do |court| %>
-          <tr>
-            <td><a href="/courts/<%= court.id%>"><%= court.title %></a></td>
-            <td><%= court.location %></td>
-            <td><%= court.rating %></td>
-          </tr>
-        <% end %>
-        </table>
+      <% if @court.games != nil %>
+        <h4>Available Games:</h4>
+        <ul>
+          <% @court.games.each do |game| %>
+            <li><a href="/game/<%= game.id %>"><%= game.game_name %>: </a><%= game.time.strftime("%B %u, %Y") %><%= game.time.strftime(" at %I:%M%p") %></li>
+          <% end %>
+        </ul>
+      <% else %>
+        <h4>No Available Games Yet</h4>
       <% end %>
     </div>
   </div>
   <div class="col col-md-4">
     <div class="card">
-      <h3>Add a court:</h3>
-      <form action="/courts" method="post">
+      <h3>Update <%= @court.title %>:</h3>
+      <form action="/courts/<%= @court.id %>/update" method="post">
+        <input type="hidden" name="_method" value="patch">
         <div class="form-group">
           <label for="title">Title</label>
           <input type="text" name="title" autofocus required class="form-control">
         </div>
         <div class="form-group">
           <label for="location">Location</label>
-          <input id ="location" type="text" name="location" required class="form-control"
+          <input id ="location" type="text" name="location" required class="form-control">
         </div>
         <div class="form-group">
           <label for="description">Description</label>
@@ -51,4 +49,3 @@
       </form>
     </div>
   </div>
-</div>
