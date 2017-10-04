@@ -2,9 +2,23 @@
   <h1><%= @game.game_name %></h1>
 </div>
 
-<h3><%= @game.courts.first.title %></h3>
+<a href="/courts/<%= @game.courts.first.id %>"><h3><%= @game.courts.first.title %></h3></a>
 <h3><%= @game.time.strftime("%B %u, %Y") %><%= @game.time.strftime(" at %I:%M%p") %></h3>
 
+<div class="card">
+  <div class="form-group">
+    <h3>Players On Game:</h3>
+    <% if @game.players.any? %>
+    <ul>
+      <% @game.players.each do |player| %>
+      <li><a href="/player/<%= player.id()%>"><%= player.name() %></a> </li>
+      <% end %>
+    </ul>
+    <% else %>
+    <p>There are no players yet</p>
+    <% end %>
+  </div>
+</div>
 
 
-<a href="/join_game/<%= @game.id %>"><button type="button" name="button">Join Game</button></a>
+  <a href="/join_game/<%= @game.id %>"><button type="button" class="btn btn-succes">Join Game</button></a>

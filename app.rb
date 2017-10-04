@@ -55,6 +55,7 @@ end
 # ///view and update games///
 get '/game/:id' do
   @game = Game.find(params[:id])
+  @players = Player.all()
   erb(:game)
 end
 
@@ -78,12 +79,32 @@ end
 
 get('/join_game/:id') do
   game = Game.find(params['id'])
-  current_user.games.push(game)
-  redirect('/')
+  id = game.id
+  check = nil;
+
+  game.players.each do |player|
+    if player.id == current_user.id
+      check = false
+    else
+      check = true
+    end
+  end
+  if current_user
+    if check
+      current_user.games.push(game)
+      redirect("game/#{id}")
+    else
+      @error = 'You\'ve already joined this game!'
+      erb(:error)
+    end
+  else
+    @error = 'You must be signed in to join games'
+    erb(:error)
+  end
 end
 # //////
 
-# ///create and update courts///
+# ///create courts///
 get '/courts' do
   @courts = Court.all()
   erb(:courts)
@@ -103,4 +124,28 @@ post '/courts' do
     erb(:error)
   end
 end
+# //////
+
+# ///view and update a court///
+get '/courts/:id' do
+  @court = Court.find(params[:id])
+  # binding.pry
+  erb(:court_page)
+end
+
+patch '/courts/:id/update' do
+  title = params['title']
+  location = params['location']
+  description = params['description']
+  hoop_count = params['hoop_count']
+  rating = params['rating']
+  @court = Court.find(params[:id])
+  Court.update({title: title})
+  Court.update({location: location})
+  Court.update({description: description})
+  Court.update({hoop_count: hoop_count})
+  Court.update({rating: rating})
+redirect "/courts/#{@court.id}"
+end
+
 # //////
