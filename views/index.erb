@@ -27,7 +27,7 @@
       <h4>Local Courts:</h4>
       <% if @courts != nil %>
         <% @courts.each do |court| %>
-          <a href="/court/<%= court.id %>"><%= court.title %></a>
+          <a href="/courts/<%= court.id %>"><%= court.title %></a>
         <% end %>
       <% else %>
         <option>There Are No Courts Yet</option>

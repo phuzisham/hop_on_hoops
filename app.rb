@@ -67,7 +67,6 @@ post('/create_game') do
   game = Game.create(time: datetime, game_name: game_name)
   game.courts.push(court)
   current_user.games.push(game)
-  binding.pry
   redirect('/')
 end
 
@@ -78,7 +77,7 @@ get('/join_game/:id') do
 end
 # //////
 
-# ///create and update courts///
+# ///create courts///
 get '/courts' do
   @courts = Court.all()
   erb(:courts)
@@ -93,4 +92,28 @@ post '/courts' do
   @court = Court.create({location: location, hoop_count: hoop_count, rating: rating, description: description, title: title})
   redirect(:courts)
 end
+# //////
+
+# ///view and update a court///
+get '/courts/:id' do
+  @court = Court.find(params[:id])
+  # binding.pry
+  erb(:court_page)
+end
+
+patch '/courts/:id/update' do
+  title = params['title']
+  location = params['location']
+  description = params['description']
+  hoop_count = params['hoop_count']
+  rating = params['rating']
+  @court = Court.find(params[:id])
+  Court.update({title: title})
+  Court.update({location: location})
+  Court.update({description: description})
+  Court.update({hoop_count: hoop_count})
+  Court.update({rating: rating})
+redirect "/courts/#{@court.id}"
+end
+
 # //////
