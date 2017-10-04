@@ -2,6 +2,21 @@
   text-decoration: none;
 }*/
 
+body {
+  background: url("/img/hoop.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#mainCard {
+  margin: 50px;
+  padding: 20px;
+  opacity: .6;
+  z-index: -10;
+}
+
 #footer {
   font-family: 'Gruppo', cursive !important;
   /*text-align: center;*/
