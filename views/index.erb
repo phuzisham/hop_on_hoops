@@ -1,101 +1,94 @@
-<div class="row">
-  <div class="col-sm-3">
-    <div class="card">
-      <% if current_user %>
-        <h4>Welcome back: <%= current_user.user_name %></h4>
-        <a href="/signout"><h6>Sign Out</h6></a>
-      <% else %>
-        <h4>Login:</h4>
-        <form class="" action="/login" method="post">
-          <div class="form-group">
-            <label for="user_name">User Name:</label>
-            <input class="form-control" type="text" name="user_name">
-          </div>
-          <div class="form-group">
-            <label for="user_password">Password:</label>
-            <input class="form-control" type="password" name="user_password">
-          </div>
-          <button class="btn btn-success" type="submit" name="button">Log In</button>
-        </form>
-        <br>
-        <small><a href="/sign_up">Not registered? Sign up here.</a></small>
-      <% end %>
-    </div>
-  </div>
-  <div class="col-sm-3">
-    <div class="card">
-      <h4>Local Courts:</h4>
-      <% if @courts != nil %>
-        <% @courts.each do |court| %>
-          <a href="/court/<%= court.id %>"><%= court.title %></a>
+<div id="mainCard">
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="card">
+        <% if current_user %>
+          <h4>Welcome back: <%= current_user.user_name %></h4>
+          <a href="/signout"><h6>Sign Out</h6></a>
+        <% else %>
+          <h4>Login:</h4>
+          <form class="" action="/login" method="post">
+            <div class="form-group">
+              <label for="user_name">User Name:</label>
+              <input class="form-control" type="text" name="user_name">
+            </div>
+            <div class="form-group">
+              <label for="user_password">Password:</label>
+              <input class="form-control" type="password" name="user_password">
+            </div>
+            <button class="btn btn-success" type="submit" name="button">Log In</button>
+          </form>
+          <br>
+          <small><a href="/sign_up">Not registered? Sign up here.</a></small>
         <% end %>
-      <% else %>
-        <option>There Are No Courts Yet</option>
-      <% end %>
+      </div>
     </div>
-  </div>
-  <div class="col-sm-6">
-    <!-- <div id="floating-panel">
-      <input id="address" type="textbox" value="Portland, Or">
-      <input id="submit" type="button" value="Create Court Location">
+    <div class="col-sm-3">
+      <div class="card">
+        <h4>Local Courts:</h4>
+        <% if @courts.any? %>
+          <% @courts.each do |court| %>
+            <a href="/courts/<%= court.id %>"><%= court.title %></a>
+          <% end %>
+        <% else %>
+          <h5>There Are No Courts Yet</h5>
+        <% end %>
+      </div>
     </div>
-    <div id="locationField">
-      <input id="autocomplete" placeholder="Enter a city" type="text" />
-    </div> -->
+    <div class="col-sm-6">
     <div class="card">
       <input id="pac-input" class="controls" type="text" placeholder="Search Box" value ="basketball courts near Portland, Oregon, United States">
       <div id="map"></div>
     </div>
-  </div>
-</div>
-<br>
-<div class="row">
-  <div class="col-sm-6">
-    <div class="card">
-      <% if @games != nil %>
-        <h4>Available Games:</h4>
-        <ul>
-          <% @games.each do |game| %>
-            <li><a href="/game/<%= game.id %>"><%=game.game_name%>: </a><%=  game.courts.first.title %>, <%= game.time.strftime("%B %u, %Y") %><%= game.time.strftime(" at %I:%M%p") %></li>
-          <% end %>
-        </ul>
-      <% else %>
-        <h4>No Available Games Yet</h4>
-      <% end %>
     </div>
   </div>
-  <div class="col-sm-6">
-    <div class="card">
-      <h4>Create Game:</h4>
-      <form class="" action="/create_game" method="post">
-        <div class="form-group">
-          <label for="game_name">Game Name:</label>
-          <input type="text" name="game_name" class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="court">Court:</label>
-          <select class="form-control" name="court">
-            <% if @courts != nil %>
-              <% @courts.each do |court| %>
-                <option value="<%= court.id %>"><%= court.title %></option>
+  <br>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <h4>Available Games:</h4>
+        <% if @games.any? %>
+          <% @games.each do |game| %>
+            <span>
+              <a href="/game/<%= game.id %>"><%=game.game_name%>: </a><%=  game.courts.first.title %>, <%= game.time.strftime("%B %u, %Y") %><%= game.time.strftime(" at %I:%M%p") %>
+            </span>
+          <% end %>
+        <% else %>
+          <h5>No Available Games Yet</h5>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <h4>Create Game:</h4>
+        <form class="" action="/create_game" method="post">
+          <div class="form-group">
+            <label for="game_name">Game Name:</label>
+            <input type="text" name="game_name" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="court">Court:</label>
+            <select class="form-control" name="court">
+              <% if @courts.any? %>
+                <% @courts.each do |court| %>
+                  <option value="<%= court.id %>"><%= court.title %></option>
+                <% end %>
+              <% else %>
+                <option>There Are No Courts Yet</option>
               <% end %>
-            <% else %>
-              <option>There Are No Courts Yet</option>
-            <% end %>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="date">Date:</label>
-          <input class="form-control" type="date" name="date">
-        </div>
-        <div class="form-group">
-          <label for="time">Time:</label>
-          <input class="form-control" type="time" name="time">
-        </div>
-        <button class="btn btn-success" type="submit" name="button">Create Game</button>
-      </form>
-      <br>
-      <small><a href="/sign_up">Not registered? Sign up here.</a></small>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="date">Date:</label>
+            <input class="form-control" type="date" name="date">
+          </div>
+          <div class="form-group">
+            <label for="time">Time:</label>
+            <input class="form-control" type="time" name="time">
+          </div>
+          <button class="btn btn-success" type="submit" name="button">Create Game</button>
+        </form>
+      </div>
     </div>
   </div>
 </div>
