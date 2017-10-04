@@ -150,5 +150,11 @@ patch '/courts/:id/update' do
     erb(:error)
   end
 end
+# //////
 
+# ///about page///
+get '/about' do
+
+  erb(:about)
+end
 # //////
