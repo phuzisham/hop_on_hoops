@@ -31,7 +31,7 @@ get('/register') do
   user_name = params['user_name']
   user_password = params['user_password']
   Player.create({name: name, user_name: user_name, user_password: user_password})
-  redirect('/')
+  erb(:login)
 end
 
 post('/login') do
@@ -48,7 +48,7 @@ end
 
 get('/signout') do
   session.clear
-  erb(:index)
+  redirect('/')
 end
 # //////
 
@@ -69,7 +69,6 @@ post('/create_game') do
     game = Game.create(time: datetime, game_name: game_name)
     game.courts.push(court)
     current_user.games.push(game)
-    binding.pry
     redirect('/')
   else
     @error = 'You must be logged in to add games.'
@@ -82,14 +81,14 @@ get('/join_game/:id') do
   id = game.id
   check = nil;
 
-  game.players.each do |player|
-    if player.id == current_user.id
-      check = false
-    else
-      check = true
-    end
-  end
   if current_user
+    game.players.each do |player|
+      if player.id == current_user.id
+        check = false
+      else
+        check = true
+      end
+    end
     if check
       current_user.games.push(game)
       redirect("game/#{id}")
@@ -133,18 +132,23 @@ get '/courts/:id' do
 end
 
 patch '/courts/:id/update' do
-  title = params['title']
-  location = params['location']
-  description = params['description']
-  hoop_count = params['hoop_count']
-  rating = params['rating']
-  @court = Court.find(params[:id])
-  Court.update({title: title})
-  Court.update({location: location})
-  Court.update({description: description})
-  Court.update({hoop_count: hoop_count})
-  Court.update({rating: rating})
-redirect "/courts/#{@court.id}"
+  if current_user
+    title = params['title']
+    location = params['location']
+    description = params['description']
+    hoop_count = params['hoop_count']
+    rating = params['rating']
+    @court = Court.find(params[:id])
+    Court.update({title: title})
+    Court.update({location: location})
+    Court.update({description: description})
+    Court.update({hoop_count: hoop_count})
+    Court.update({rating: rating})
+    redirect "/courts/#{@court.id}"
+  else
+    @error = 'You must be logged in to update courts.'
+    erb(:error)
+  end
 end
 
 # //////
