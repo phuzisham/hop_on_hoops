@@ -55,6 +55,7 @@ end
 # ///view and update games///
 get '/game/:id' do
   @game = Game.find(params[:id])
+  @players = Player.all()
   erb(:game)
 end
 
@@ -67,14 +68,33 @@ post('/create_game') do
   game = Game.create(time: datetime, game_name: game_name)
   game.courts.push(court)
   current_user.games.push(game)
-  binding.pry
   redirect('/')
 end
 
 get('/join_game/:id') do
   game = Game.find(params['id'])
-  current_user.games.push(game)
-  redirect('/')
+  id = game.id
+  check = nil;
+
+  game.players.each do |player|
+    if player.id == current_user.id
+      check = false
+    else
+      check = true
+    end
+  end
+  if current_user
+    if check
+      current_user.games.push(game)
+      redirect("game/#{id}")
+    else
+      @error = 'You\'ve already joined this game!'
+      erb(:error)
+    end
+  else
+    @error = 'You must be signed in to join games'
+    erb(:error)
+  end
 end
 # //////
 
