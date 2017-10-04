@@ -1,30 +1,29 @@
-// require("pry")
-// function initMap() {
-//   var uluru = {lat: 45.5231, lng: -122.6765};
-//   var map = new google.maps.Map(document.getElementById('map'), {
-//     zoom: 13,
-//     center: uluru
-//   });
-//   var geocoder = new google.maps.Geocoder();
-//   document.getElementById('submit').addEventListener('click', function() {
-//   geocodeAddress(geocoder, map);
-//   });
-// }
-//
-// function geocodeAddress(geocoder, resultsMap) {
-//   var address = document.getElementById('address').value;
-//   geocoder.geocode({'address': address}, function(results, status) {
-//     if (status === 'OK') {
-//       resultsMap.setCenter(results[0].geometry.location);
-//       var marker = new google.maps.Marker({
-//         map: resultsMap,
-//         position: results[0].geometry.location
-//       });
-//     } else {
-//       alert('Geocode was not successful for the following reason: ' + status);
-//     }
-//   });
-// }
+function initMap() {
+  var uluru = {lat: 45.5231, lng: -122.6765};
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 13,
+    center: uluru
+  });
+  var geocoder = new google.maps.Geocoder();
+  document.getElementById('submit').addEventListener('click', function() {
+  geocodeAddress(geocoder, map);
+  });
+}
+
+function geocodeAddress(geocoder, resultsMap) {
+  var address = document.getElementById('address').value;
+  geocoder.geocode({'address': address}, function(results, status) {
+    if (status === 'OK') {
+      resultsMap.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+        map: resultsMap,
+        position: results[0].geometry.location
+      });
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
       function initAutocomplete() {
         var map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 45.5231, lng: -122.6765},
@@ -67,7 +66,7 @@
             }
             var icon = {
               url: place.icon,
-              size: new google.maps.Size(71, 71), 
+              size: new google.maps.Size(71, 71),
               origin: new google.maps.Point(0, 0),
               anchor: new google.maps.Point(17, 34),
               scaledSize: new google.maps.Size(25, 25)
@@ -90,3 +89,36 @@
           map.fitBounds(bounds);
         });
       }
+
+
+      //weather api
+
+      $(document).ready(function(){
+
+        var api = "http://api.openweathermap.org/data/2.5/weather?id=5746545&appid=e81b1e7893cab4f428f0629118516293";
+
+        $.getJSON(api, function(data){
+        var fTemp;
+        var cTemp;
+        var kTemp;
+        var weatherType;
+        
+        var weatherType = data.weather[0].description;
+        var kTemp = data.main.temp;
+        var windspeed = data.wind.speed;
+        var city= data.name;
+
+        fTemp= (kTemp)*(9/5)-459.67;
+        cTemp= kTemp-273;
+
+        // console.log(kTemp);
+        // console.log(cTemp)
+        // console.log(fTemp)
+        // console.log(city)
+        // console.log(weatherType)
+        $("#city").html(city);
+        $("#weatherType").html(weatherType);
+        $("#fTemp").html(fTemp);
+        $("#windspeed").html(windspeed);
+        });
+      });
