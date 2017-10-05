@@ -135,3 +135,27 @@ li {
   width: 345px;
 }
 /*end of map stuff*/
+/*start of weather api styling*/
+
+#headWeather{
+    padding-left: 10px;
+}
+#city{
+  padding-left: 10px;
+
+}
+
+#weatherType{
+  padding-left: 10px;
+
+}
+
+#fTemp{
+  padding-left: 10px;
+
+}
+
+#windspeed{
+  padding-left: 10px;
+
+}
