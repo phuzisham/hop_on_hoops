@@ -194,6 +194,7 @@ li {
 #fTemp{
   padding-left: 10px;
   cursor: pointer;
+  border: -2px;
 }
 
 #windspeed{
@@ -201,5 +202,9 @@ li {
 }
 
 .highlight{
-  color: #5fc9ce;
+  width: 118px;
+}
+
+.highlight:hover{
+  color:#5fc9ce;
 }
