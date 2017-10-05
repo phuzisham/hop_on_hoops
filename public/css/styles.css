@@ -4,6 +4,19 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  font-family: 'Baumans', cursive;
+}
+
+body h4 {
+  font-family: 'Biryani', sans-serif;
+}
+
+body h3 {
+  font-family: 'Biryani', sans-serif;
+}
+
+body h1 {
+  font-family: 'Biryani', sans-serif;
 }
 
 th, td {
