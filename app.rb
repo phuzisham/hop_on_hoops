@@ -71,6 +71,12 @@ post('/create_game') do
     game.courts.push(court)
     current_user.games.push(game)
     redirect('/')
+  elsif (game_name == game_name)
+    @error = 'Please choose another name. There is already a game with this one.'
+    erb(:error)
+  elsif(court == nil)
+    @error = 'No Courts At This Time. Make One!'
+    erb(:error)
   else
     @error = 'You must be logged in to add games.'
     erb(:error)

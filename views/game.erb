@@ -19,7 +19,7 @@
           <% if @game.players.any? %>
           <ul>
             <% @game.players.each do |player| %>
-            <li><a href="/player/<%= player.id()%>"><%= player.name() %></a> </li>
+            <li><%= player.name() %></li>
             <% end %>
           </ul>
           <% else %>
