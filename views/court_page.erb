@@ -22,11 +22,9 @@
           <div class="card">
             <% if @court.games != nil %>
               <h4>Available Games:</h4>
-              <ul>
                 <% @court.games.each do |game| %>
-                  <li><a href="/game/<%= game.id %>"><%= game.game_name %>: </a><%= game.time.strftime("%B %u, %Y") %><%= game.time.strftime(" at %I:%M%p") %></li>
+                  <a href="/game/<%= game.id %>"><%= game.game_name %>: </a><%= game.time.strftime("%B %u, %Y") %><%= game.time.strftime(" at %I:%M%p") %>
                 <% end %>
-              </ul>
             <% else %>
               <h4>No Available Games Yet</h4>
             <% end %>
