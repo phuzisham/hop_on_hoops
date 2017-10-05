@@ -201,6 +201,15 @@ li {
   padding-left: 10px;
 }
 
+#circle{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-position: center;
+  background-size: 90%;
+
+}
+
 .highlight{
   width: 118px;
 }
