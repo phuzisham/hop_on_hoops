@@ -110,40 +110,44 @@ $(document).ready(function(){
   var city= data.name;
 
   weatherType= ("Climate: ") + weatherType;
-  fTemp= ("Temp: ") + (kTemp*(9/5)-459.67).toFixed(1) + (" °F");
-  cTemp= ("Temp: ") + (kTemp-273).toFixed(1) + (" °C");
 
-  $("#city").html(city);
-  $("#weatherType").html(weatherType);
-  $("#fTemp").html(fTemp);
-  $("#fTemp").click(function(){
-    if(tempSwap === false){
-      $("#fTemp").html(fTemp);
-      tempSwap = true;
-    }
-    else{
-      $("#fTemp").html(cTemp);
-      tempSwap = false;
-    }
-  })
+  fTemp= (kTemp*(9/5)-459.67).toFixed(1)
+  cTemp= (kTemp-273).toFixed(1)
 
   windspeed= ("Wind: ") + (2.237*(windspeed)).toFixed(2) + (" mph")
   $("#windspeed").html(windspeed);
 
   if(parseInt(fTemp) >= 80){
-    $('#weather-card').css('background-image', 'url("/img/sunny.jpg")');
+    $("#circle").css('background-image', 'url("/img/sunny.png")');
     }
 
   else if(parseInt(fTemp) >= 70){
-    $('#weather-card').css('background-image', 'url("/img/rain.jpg")');
+    $("#circle").css('background-image', 'url("/img/mostlycloudy.png")');
     }
 
   else if(parseInt(fTemp) >= 50){
-    $('#weather-card').css('background-image', 'url("/img/rain.jpg")');
+    $("#circle").css('background-image', 'url("/img/haze.png")');
     }
 
-  else if(parseInt(fTemp) >=40){
-    $('#weather-card').css('background-image', 'url("/img/cold.jpg")');
-    };
+  else if(parseInt(fTemp) >= 40){
+    $("#circle").css('background-image', 'url("/img/snow.png")');
+    }
+
+    fTemp = ("Temp: ") + fTemp + (" °F")
+    cTemp = ("Temp: ") + cTemp + (" °C")
+    $("#city").html(city);
+    $("#weatherType").html(weatherType);
+    $("#fTemp").html(fTemp);
+
+    $("#fTemp").click(function(){
+      if(tempSwap === false){
+        $("#fTemp").html(fTemp);
+        tempSwap = true;
+      }
+      else{
+        $("#fTemp").html(cTemp);
+        tempSwap = false;
+      }
+    })
   });
 });
