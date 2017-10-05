@@ -55,6 +55,7 @@ end
 # ///view and update games///
 get '/game/:id' do
   @game = Game.find(params[:id])
+  @court = Court.find(params[:id])
   @players = Player.all()
   erb(:game)
 end
