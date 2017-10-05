@@ -4,6 +4,19 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+body h4 {
+  font-family: 'Proza Libre', sans-serif;
+}
+
+body h3 {
+  font-family: 'Proza Libre', sans-serif;
+}
+
+body h1 {
+  font-family: 'Proza Libre', sans-serif;
 }
 
 th, td {
