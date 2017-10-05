@@ -95,7 +95,7 @@ function initAutocomplete() {
 
 $(document).ready(function(){
 
-  var api = "http://api.openweathermap.org/data/2.5/weather?id=5746545&appid=e81b1e7893cab4f428f0629118516293";
+  var api = "http://api.openweathermap.org/data/2.5/weather?id=5746545&appid=adec1ce255d4ff8e967c9a2d09c5fca1";
 
   $.getJSON(api, function(data){
   var fTemp;
