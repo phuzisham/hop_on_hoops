@@ -21,5 +21,8 @@ RSpec.configure do |config|
     Court.all().each() do |x|
       x.destroy
     end
+    Match.all().each do |x|
+      x.destroy
+    end
   end
 end
