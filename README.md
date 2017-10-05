@@ -12,6 +12,7 @@ _An application to match pickup basketball games to players in the Portland area
 ![alt text](https://github.com/phuzisham/hop_on_hoops/blob/master/public/img/courts.png "about page")
 ![alt text](https://github.com/phuzisham/hop_on_hoops/blob/master/public/img/game.png "courts page")
 
+
 ## User Stories
 
 * As a player I want to be able to find local games.
@@ -27,7 +28,9 @@ _An application to match pickup basketball games to players in the Portland area
 * As a player I want to be able to create and update a personal profile.
 * As a player I want to be able to chat with other users in a public forum.
 * As a player I want to be able to stay up to date on the latest news and events related to Hop on Hoops
+
 ![alt text](https://github.com/phuzisham/hop_on_hoops/blob/master/public/img/table.png "database tables")
+
 ## Technologies Used
 
 * Ruby
