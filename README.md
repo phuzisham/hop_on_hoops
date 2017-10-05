@@ -24,8 +24,6 @@ _An application to match pickup basketball games to players in the Portland area
 * As a player I want to be able to chat with other users in a public forum.
 * As a player I want to be able to stay up to date on the latest news and events related to Hop on Hoops
 
-## Specs
-
 ![alt text](/img/table.png "database tables")
 
 ## Technologies Used
