@@ -1,24 +1,32 @@
-<div class="jumbotron">
-  <h1><%= @game.game_name %></h1>
-</div>
 
-<a href="/courts/<%= @game.courts.first.id %>"><h3><%= @game.courts.first.title %></h3></a>
-<h3><%= @game.time.strftime("%B %u, %Y") %><%= @game.time.strftime(" at %I:%M%p") %></h3>
+<div class="mainCard">
+  <div class="row">
+    <div class="col-sm-6">
+      <div id="hoopCard" class="card">
+        <img id="hoopPic" src="/img/eden-wake.jpg" alt="">
+      </div>
+    </div>
 
-<div class="card">
-  <div class="form-group">
-    <h3>Players On Game:</h3>
-    <% if @game.players.any? %>
-    <ul>
-      <% @game.players.each do |player| %>
-      <li><a href="/player/<%= player.id()%>"><%= player.name() %></a> </li>
-      <% end %>
-    </ul>
-    <% else %>
-    <p>There are no players yet</p>
-    <% end %>
+    <div class="col-sm-6">
+      <h1><%= @game.game_name %>: <a href="/courts/<%= @game.courts.first.id %>"><%= @game.courts.first.title %></a></h1>
+      <h5><%= @game.time.strftime("%B %u, %Y") %><%= @game.time.strftime(" at %I:%M%p") %></h5>
+      <p><%= @court.description %></p>
+      <br>
+      <div class="card">
+        <div class="form-group">
+          <h3>Players:</h3>
+          <% if @game.players.any? %>
+          <ul>
+            <% @game.players.each do |player| %>
+            <li><a href="/player/<%= player.id()%>"><%= player.name() %></a> </li>
+            <% end %>
+          </ul>
+          <% else %>
+          <p>There are no players yet</p>
+          <% end %>
+        </div>
+      </div>
+      <a href="/join_game/<%= @game.id %>"><button type="button" class="btn btn-succes">Join Game</button></a>
+    </div>
   </div>
 </div>
-
-
-  <a href="/join_game/<%= @game.id %>"><button type="button" class="btn btn-succes">Join Game</button></a>
