@@ -178,24 +178,26 @@ li {
 /*start of weather api styling*/
 
 #headWeather{
-    padding-left: 10px;
+  padding-left: 10px;
 }
+
 #city{
   padding-left: 10px;
-
 }
 
 #weatherType{
   padding-left: 10px;
-
 }
 
 #fTemp{
   padding-left: 10px;
-
+  cursor: pointer;
 }
 
 #windspeed{
   padding-left: 10px;
+}
 
+.highlight{
+  color: #5fc9ce;
 }

@@ -109,8 +109,9 @@ $(document).ready(function(){
   var windspeed = data.wind.speed;
   var city= data.name;
 
-  fTemp= (kTemp*(9/5)-459.67).toFixed(1) + (" °F");
-  cTemp= (kTemp-273).toFixed(1) + (" °C");
+  weatherType= ("Climate: ") + weatherType;
+  fTemp= ("Temp: ") + (kTemp*(9/5)-459.67).toFixed(1) + (" °F");
+  cTemp= ("Temp: ") + (kTemp-273).toFixed(1) + (" °C");
 
   $("#city").html(city);
   $("#weatherType").html(weatherType);
@@ -125,7 +126,8 @@ $(document).ready(function(){
       tempSwap = false;
     }
   })
-  windspeed= (2.237*(windspeed)).toFixed(2) + (" mph")
+
+  windspeed= ("Wind: ") + (2.237*(windspeed)).toFixed(2) + (" mph")
   $("#windspeed").html(windspeed);
 
   if(parseInt(fTemp) >= 80){
@@ -137,10 +139,10 @@ $(document).ready(function(){
     }
 
   else if(parseInt(fTemp) >= 50){
-    $('#weather-card').css('background-image', 'url("/img/cloudy.jpg")');
+    $('#weather-card').css('background-image', 'url("/img/rain.jpg")');
     }
 
-  else if(parseInt(fTemp) > 40){
+  else if(parseInt(fTemp) >=40){
     $('#weather-card').css('background-image', 'url("/img/cold.jpg")');
     };
   });
