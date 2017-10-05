@@ -1,26 +1,16 @@
 <div class="mainCard">
   <div class="row">
     <div class="col-sm-3">
-      <div class="card">
-        <% if current_user %>
-          <h4>Welcome back: <%= current_user.user_name %></h4>
-          <a href="/signout"><h6>Sign Out</h6></a>
-        <% else %>
-          <h4>Login:</h4>
-          <form class="" action="/login" method="post">
-            <div class="form-group">
-              <label for="user_name">User Name:</label>
-              <input class="form-control" type="text" name="user_name">
-            </div>
-            <div class="form-group">
-              <label for="user_password">Password:</label>
-              <input class="form-control" type="password" name="user_password">
-            </div>
-            <button class="btn btn-success" type="submit" name="button">Log In</button>
-          </form>
-          <br>
-          <small><a href="/sign_up">Not registered? Sign up here.</a></small>
-        <% end %>
+      <div id="weather-card" class="card">
+        <div>
+          <h4 id ="headWeather">Current Weather: </h4>
+          <ul class= "list-unstyled">
+            <li id="city"></li>
+            <li id= "weatherType"></li>
+            <li id= "fTemp"></li>
+            <li id = "windspeed"></li>
+          <ul>
+        </div>
       </div>
     </div>
     <div class="col-sm-3">
@@ -35,7 +25,7 @@
         <% end %>
       </div>
     </div>
-    <div class="col-sm-6">
+  <div class="col-sm-6">
     <div class="card">
       <input id="pac-input" class="controls" type="text" placeholder="Search Box" value ="basketball courts near Portland, Oregon, United States">
       <div id="map"></div>
