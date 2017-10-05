@@ -26,6 +26,17 @@ li {
   list-style-type: none;
 }
 
+#hoopCard {
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+#hoopPic {
+  max-width: 100%;
+  border-radius: 23px;
+  filter:grayscale(60%);
+}
+
 #error {
   text-align: center;
 }
