@@ -110,7 +110,7 @@ get '/courts' do
 end
 
 post '/courts' do
-  if current_user
+  # if current_user
     location = params['location']
     title = params['title']
     hoop_count = params['hoop_count']
@@ -118,10 +118,10 @@ post '/courts' do
     description = params['description']
     @court = Court.create({location: location, hoop_count: hoop_count, rating: rating, description: description, title: title})
     redirect(:courts)
-  else
-    @error = 'You must be logged in to add courts.'
-    erb(:error)
-  end
+  # else
+  #   @error = 'You must be logged in to add courts.'
+  #   erb(:error)
+  # end
 end
 # //////
 

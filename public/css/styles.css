@@ -1,13 +1,15 @@
-/*a:hover {
-  text-decoration: none;
-}*/
-
 body {
   background: url("/img/fence.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+
+th, td {
+    padding: 10px;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 a {
