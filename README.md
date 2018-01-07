@@ -1,6 +1,9 @@
 # _Hop On Hoops_
 
-#### _A group project exploring database basics in Ruby, 10.01.2017_
+#### _A group project exploring database basics in Ruby._
+
+#### _Created: 10.01.2017_
+#### _Last Modified: 01.07.2018_
 
 #### By _Noah Gottlieb, Senya Webster, David Hale, and Riki Montgomery_
 
